@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 require_relative "../lib/phrase_finder"
 
-Phrase.new.call
+Phrase_book.new.call
 

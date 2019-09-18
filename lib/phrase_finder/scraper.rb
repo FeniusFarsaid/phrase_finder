@@ -5,6 +5,7 @@ class Scraper
   def self.scrape_doc
     doc = Nokogiri::HTML(open("https://www.omniglot.com/language/phrases/index.htm"))
     langs = doc.css("#list2").css("a")
+
     langs.each do |lang|
       if lang.text != ""
         lang_name = lang.text
@@ -17,12 +18,23 @@ class Scraper
   def self.scrape_phrases(language)
     #if languages.phrases - don't scrape
     doc = Nokogiri::HTML(open("https://www.omniglot.com#{language.url}")) 
-    doc.css("tr")[1..10].each do |row| 
-       puts "#{row.css("td")[0].text.strip}  |   #{row.css("td")[1].text.strip}"    
-      #  binding.pry
+    phrases = doc.css("tr")[1..11].each do |row|
+      
+      
+      english = row.css("td")[0].text.strip.gsub("\n", ",")
+      translations = row.css("td")[1].text.strip.gsub("\n", ",")
+      #binding.pry
+      Phrases.new(english, translations, language)
     end 
+    #binding.pry
+  end
+end 
 
-    binding.pry
+#puts "#{row.css("td")[0].text.strip.gsub("\n", ",").bold}  |   #{row.css("td")[1].text.strip.gsub("\n", ",").bold}" 
+#puts "#{row.css("td")[0].text.strip}  |   #{row.css("td")[1].text.strip}"  
+#  puts "#{row.css("td")[0].text.strip}  |   #{row.css("td")[1].text.strip}"   
+
+  #binding.pry
     # phrases = doc.css("tr")[1].css("td")[1].text
     # phrases.each do |phrase|
     #   if phrase.text != ""
@@ -30,7 +42,6 @@ class Scraper
     #       Phrase.new(phrase_text)
     #   end
     # end 
-  end
 
   #Scraper.scrape_phrases
 
@@ -38,7 +49,7 @@ class Scraper
 
     #grab phrases for each one make a Phrase AND to this language,phrases
     #binding.pry    
-end 
+#end 
 #https://www.omniglot.com/language/phrases/#{language}.htm
 #Scraper.scrape_phrases(abkhaz)
 
