@@ -3,35 +3,35 @@ class Phrase_book
     def call 
         Scraper.scrape_doc
         intro
-        sleep 4
         menu
     end 
 
     def intro
         puts "Welcome to Phrase Finder."
+        sleep 2
         puts "Phrase Finder is a database of conversational phrases in 317 world languages."
      end 
 
     def menu
         print_list
-        puts "Here is a list of available languages. Select a language by number to view phrases."
-        user_prompt
+        puts "Here is a list of available languages. Select a language by number or type 'exit' to exit."
+        puts "To reprint the list of available languages, type 'print.'"
         input = nil
-        input = gets.chomp
+        while true
+            input = gets.chomp
 
-        if input == "print"
-            menu
-        elsif input == "exit"
-            goodbye
-        elsif (1..Language.all.length).include?(input.to_i)
+            if input == "print"
+                menu
+            elsif input == "exit"
+                goodbye
+            elsif (1..Language.all.length).include?(input.to_i)
             language = Language.all[input.to_i - 1]
             Scraper.scrape_phrases(language)
-            print_phrases
-            sleep 4 
-            
-        else
-            puts "Invalid request."
-        end 
+                puts "Select another language by number to continue or type 'exit' to exit."
+            else
+                puts "Invalid request."
+            end 
+        end
     end 
 
     def print_list
@@ -40,22 +40,17 @@ class Phrase_book
         end 
     end 
 
-    def print_phrases
-        Phrases.all.each do |phrase|
-            puts "#{phrase.english}   |   #{phrase.translations}"
-        end
-    end
-
     def goodbye
         puts "Goodbye, Au Revoir, Adios"
-        exit 
+        exit
     end 
-
-    def user_prompt
-        puts "To reprint the list of available languages, type 'print' or type 'exit' to exit."
-        
-    end
 end
+
+    # def user_prompt
+    #     puts "To reprint the list of available languages, type 'print' or type 'exit' to exit."
+        
+    # end
+
 
 #     # if it is list print_list
         #     # if it is a number in the range - get that language obj - if obj phrases is empty - scrape Scraper.scrape_phrases(obj) then once not empty or if not empty nt phrase list
@@ -64,3 +59,8 @@ end
         
         # end 
             #remember to prompt me again
+
+    # To see a list of available languages or to reprint this list at anytime, type 'list.'
+    # To exit, type 'exit.'
+
+    
