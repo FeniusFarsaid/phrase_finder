@@ -1,17 +1,13 @@
-# CLI Controller
 class Phrase_book
+
     def call 
         Scraper.scrape_doc
-        intro
-        sleep 4
-        menu
-    end 
-
-    def intro
         puts "Welcome to Phrase Finder."
         sleep 2
-        puts "Phrase Finder is a database of conversational phrases in 317 world languages listed below."
-     end 
+        puts "Phrase Finder is a database of conversational phrases in 299 world languages listed below."
+        sleep 2
+        menu
+    end 
 
     def menu
         print_list
@@ -23,15 +19,15 @@ class Phrase_book
 
             if input == "print"
                 menu
-            elsif input == "exit"
-                goodbye
             elsif (1..Language.all.length).include?(input.to_i)
-            language = Language.all[input.to_i - 1]
-            phrases = Scraper.scrape_phrases(language)
+                language = Language.all[input.to_i - 1]
+                phrases = Scraper.scrape_phrases(language)
                 phrases.each do |phrase|
                     puts "#{phrase.english}  |   #{phrase.translations}"
-                end 
+                    end 
                 puts "Select another language by number to continue or type 'exit' to exit."
+            elsif input == "exit"
+                goodbye
             else
                 puts "Invalid request."
             end 
@@ -49,22 +45,3 @@ class Phrase_book
         exit
     end 
 end
-
-    # def user_prompt
-    #     puts "To reprint the list of available languages, type 'print' or type 'exit' to exit."
-        
-    # end
-
-
-#     # if it is list print_list
-        #     # if it is a number in the range - get that language obj - if obj phrases is empty - scrape Scraper.scrape_phrases(obj) then once not empty or if not empty nt phrase list
-        #     # if it is exit - goodbye and exit
-        #     #     else error message
-        
-        # end 
-            #remember to prompt me again
-
-    # To see a list of available languages or to reprint this list at anytime, type 'list.'
-    # To exit, type 'exit.'
-
-    

@@ -15,7 +15,4 @@ class Phrases
     def self.all
         @@all 
     end 
-
-    
-
 end 
