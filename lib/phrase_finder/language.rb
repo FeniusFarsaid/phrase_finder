@@ -15,6 +15,10 @@ class Language
         @@all
     end 
 
+    def phrases
+        Phrases.all.select{|phrase| phrase.language == self}
+    end 
+
 
 end 
 

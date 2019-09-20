@@ -16,4 +16,6 @@ class Phrases
         @@all 
     end 
 
+    
+
 end 

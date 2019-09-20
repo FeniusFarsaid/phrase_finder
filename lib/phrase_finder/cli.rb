@@ -3,13 +3,14 @@ class Phrase_book
     def call 
         Scraper.scrape_doc
         intro
+        sleep 4
         menu
     end 
 
     def intro
         puts "Welcome to Phrase Finder."
         sleep 2
-        puts "Phrase Finder is a database of conversational phrases in 317 world languages."
+        puts "Phrase Finder is a database of conversational phrases in 317 world languages listed below."
      end 
 
     def menu
@@ -26,7 +27,10 @@ class Phrase_book
                 goodbye
             elsif (1..Language.all.length).include?(input.to_i)
             language = Language.all[input.to_i - 1]
-            Scraper.scrape_phrases(language)
+            phrases = Scraper.scrape_phrases(language)
+                phrases.each do |phrase|
+                    puts "#{phrase.english}  |   #{phrase.translations}"
+                end 
                 puts "Select another language by number to continue or type 'exit' to exit."
             else
                 puts "Invalid request."
