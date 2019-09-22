@@ -4,7 +4,6 @@ class Phrases
 
     @@all = []
     
-
     def initialize(english, translations, language)
         @english = english
         @translations = translations

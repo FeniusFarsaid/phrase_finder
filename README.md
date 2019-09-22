@@ -1,10 +1,14 @@
 # PhraseFinder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/phrase_finder`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This program comprises a CLI for generating phrasebooks in various world languages as gleaned from (https://www.omniglot.com/index.htm). Running the program prompts a number indexed menu of languages for user selection. At the command line the user can input a language index number to print a set of translated phrases, type "print" to reprint the menu, or type "exit" to leave the program. Invalid inputs return the message "Invalid input."
 
 ## Installation
+
+This program can be cloned from .
+
+The user should then run 'bundle install' in the terminal.
+
+The program is executed with the command: "ruby bin/phrase_finder_run".
 
 Add this line to your application's Gemfile:
 

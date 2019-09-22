@@ -23,7 +23,7 @@ class Phrase_book
                 language = Language.all[input.to_i - 1]
                 phrases = Scraper.scrape_phrases(language)
                 phrases.each do |phrase|
-                    puts "#{phrase.english}  |   #{phrase.translations}"
+                    puts "#{phrase.english}  |  #{phrase.translations}"
                     end 
                 puts "Select another language by number to continue or type 'exit' to exit."
             elsif input == "exit"

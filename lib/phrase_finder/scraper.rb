@@ -16,12 +16,12 @@ class Scraper
     if !language.phrases.empty?
       language.phrases 
     else
-        doc = Nokogiri::HTML(open("https://www.omniglot.com#{language.url}")) 
-        doc.css("tr")[1..11].each do |row|
-        
-            english = row.css("td")[0].text.strip.gsub("\n", ",")
-            translations = row.css("td")[1].text.strip.gsub("\n", ",")
-            Phrases.new(english, translations, language)
+      doc = Nokogiri::HTML(open("https://www.omniglot.com#{language.url}")) 
+
+      doc.css("tr")[1..11].each do |row|
+        english = row.css("td")[0].text.strip.gsub("\n", ",")
+        translations = row.css("td")[1].text.strip.gsub("\n", ",")
+        Phrases.new(english, translations, language)
         end 
       language.phrases
     end
