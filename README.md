@@ -4,7 +4,7 @@ This program comprises a CLI for generating phrasebooks in various world languag
 
 ## Installation
 
-This program can be cloned from .
+This program can be cloned from git@github.com:FeniusFarsaid/phrase_finder.git.
 
 The user should then run 'bundle install' in the terminal.
 
